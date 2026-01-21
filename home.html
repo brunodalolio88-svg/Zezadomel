@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edison dos Santos | Personal Home Broker</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #0f172a; /* Azul Noite Profundo */
+            --accent: #ca8a04; /* Dourado Sóbrio */
+            --bg-light: #f8fafc;
+            --text-dark: #1e293b;
+            --text-light: #94a3b8;
+            --glass: rgba(255, 255, 255, 0.95);
+            --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- Header & Nav --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .logo span { color: var(--accent); }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        nav a:hover { color: var(--accent); }
+
+        .cta-btn {
+            padding: 0.8rem 1.5rem;
+            background: var(--accent);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(202, 138, 4, 0.3);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(202, 138, 4, 0.5);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)),
+                        url('https://images.unsplash.com/photo-1600596542815-2a1484d81643?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 1rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            animation: fadeUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #e2e8f0;
+            margin-bottom: 2.5rem;
+        }
+
+        /* --- Stats Banner --- */
+        .stats-banner {
+            background: white;
+            margin: -50px auto 4rem;
+            width: 90%;
+            max-width: 1200px;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p { color: var(--text-light); font-weight: 500; }
+
+        /* --- Featured Properties --- */
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-title span {
+            color: var(--accent);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 5%;
+        }
+
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .property-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+            transition: var(--transition);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .property-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .card-img {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(15, 23, 42, 0.9);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .card-content { padding: 1.5rem; }
+
+        .price {
+            font-size: 1.5rem;
+            color: var(--accent);
+            font-weight: 700;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .card-features {
+            display: flex;
+            gap: 1rem;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 1rem;
+        }
+
+        .card-features i { margin-right: 5px; color: var(--accent); }
+
+        /* --- About Section --- */
+        .about-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        .about-img {
+            border-radius: 20px;
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            box-shadow: 20px 20px 0 var(--accent);
+        }
+
+        /* --- Contact --- */
+        .contact-box {
+            background: var(--primary);
+            color: white;
+            border-radius: 20px;
+            padding: 4rem;
+            text-align: center;
+            margin-top: 4rem;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        /* --- Floating WhatsApp --- */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .whatsapp-float:hover { transform: scale(1.1); }
+
+        /* --- Animations --- */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Mobile --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            nav { display: none; } /* Simplificado para demo */
+            .stats-banner { grid-template-columns: 1fr; margin-top: 1rem; width: 90%; }
+            .about-section { grid-template-columns: 1fr; }
+            .about-img { height: 300px; box-shadow: 10px 10px 0 var(--accent); }
+            .contact-box { padding: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Edison<span>Broker</span></div>
+        <nav>
+            <ul>
+                <li><a href="#imoveis">Imóveis</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+            </ul>
+        </nav>
+        <a href="#contato" class="cta-btn">Fale Comigo</a>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Excelência em Imóveis de Alto Padrão</h1>
+            <p>Especialista em oportunidades exclusivas em Osasco e região. Encontre o lar que reflete sua conquista.</p>
+            <a href="#imoveis" class="cta-btn" style="font-size: 1.1rem; padding: 1rem 2rem;">Ver Oportunidades</a>
+        </div>
+    </section>
+
+    <div class="stats-banner reveal">
+        <div class="stat-item">
+            <h3>+150</h3>
+            <p>Imóveis Vendidos</p>
+        </div>
+        <div class="stat-item">
+            <h3>12 Anos</h3>
+            <p>De Experiência</p>
+        </div>
+        <div class="stat-item">
+            <h3>98%</h3>
+            <p>Clientes Satisfeitos</p>
+        </div>
+    </div>
+
+    <section id="imoveis" class="container">
+        <div class="section-title reveal">
+            <span>Seleção Exclusiva</span>
+            <h2>Destaques da Semana</h2>
+            <p>Curadoria de imóveis com alto potencial de valorização.</p>
+        </div>
+
+        <div class="grid-cards">
+            <article class="property-card reveal">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <span class="badge">Venda</span>
+                </div>
+                <div class="card-content">
+                    <span class="price">R$ 1.250.000</span>
+                    <h3 class="card-title">Apartamento Sky View | Centro</h3>
+                    <div class="card-features">
+                        <span><i class="fas fa-bed"></i> 3 Quartos</span>
+                        <span><i class="fas fa-ruler-combined"></i> 142m²</span>
+                        <span><i class="fas fa-car"></i> 2 Vagas</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="property-card reveal">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <span class="badge">Oportunidade</span>
+                </div>
+                <div class="card-content">
+                    <span class="price">R$ 890.000</span>
+                    <h3 class="card-title">Casa Condomínio Vila Yara</h3>
+                    <div class="card-features">
+                        <span><i class="fas fa-bed"></i> 4 Quartos</span>
+                        <span><i class="fas fa-ruler-combined"></i> 180m²</span>
+                        <span><i class="fas fa-tree"></i> Garden</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="property-card reveal">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <span class="badge">Lançamento</span>
+                </div>
+                <div class="card-content">
+                    <span class="price">R$ 650.000</span>
+                    <h3 class="card-title">Loft Industrial | Campesina</h3>
+                    <div class="card-features">
+                        <span><i class="fas fa-bed"></i> 1 Suíte</span>
+                        <span><i class="fas fa-ruler-combined"></i> 75m²</span>
+                        <span><i class="fas fa-swimming-pool"></i> Lazer</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section id="sobre" class="container">
+        <div class="about-section">
+            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Edison dos Santos" class="about-img reveal">
+            <div class="reveal">
+                <div class="section-title" style="text-align: left; margin-bottom: 1.5rem;">
+                    <span>Sobre o Corretor</span>
+                    <h2>Edison dos Santos</h2>
+                </div>
+                <p style="color: #64748b; margin-bottom: 1.5rem;">
+                    Com mais de uma década de atuação no mercado imobiliário de Osasco e Grande São Paulo, minha missão é transformar transações complexas em experiências tranquilas e lucrativas para meus clientes.
+                </p>
+                <p style="color: #64748b; margin-bottom: 2rem;">
+                    Especialista em avaliação de mercado e negociação estratégica, garanto que cada imóvel apresentado passou por um rigoroso critério de seleção.
+                </p>
+                <a href="#contato" class="cta-btn" style="background: var(--primary);">Conhecer Histórico</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" class="container">
+        <div class="contact-box reveal">
+            <h2>Vamos encontrar seu novo imóvel?</h2>
+            <p style="margin: 1rem 0 2rem; opacity: 0.8;">Agende uma consultoria gratuita e descubra as melhores opções para seu perfil.</p>
+            <form style="max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem;">
+                <input type="text" placeholder="Seu Nome" style="padding: 1rem; border-radius: 8px; border: none;">
+                <input type="tel" placeholder="Seu WhatsApp" style="padding: 1rem; border-radius: 8px; border: none;">
+                <button type="submit" class="cta-btn" style="border: none; cursor: pointer; width: 100%;">Solicitar Contato</button>
+            </form>
+        </div>
+    </section>
+
+    <footer style="background: #0f172a; color: #64748b; padding: 2rem 5%; text-align: center; border-top: 1px solid rgba(255,255,255,0.1);">
+        <p>&copy; 2026 Edison dos Santos. CRECI 12345-F. Todos os direitos reservados.</p>
+    </footer>
+
+    <a href="https://wa.me/5511999999999" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Animação ao rolar (Scroll Reveal Simples)
+        window.addEventListener('scroll', reveal);
+
+        function reveal() {
+            var reveals = document.querySelectorAll('.reveal');
+
+            for(var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+
+                if(elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+        // Ativar na carga inicial para elementos visíveis
+        reveal();
+    </script>
+</body>
+</html>
