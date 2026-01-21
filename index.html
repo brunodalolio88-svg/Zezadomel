@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Segredo de Zeza do Mel | O Ouro Líquido</title>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@300;400;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    
+    <style>
+        :root {
+            --gold: #FFD700;
+            --dark: #0a0a0a;
+            --gray: #1f1f1f;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--white);
+            font-family: 'Roboto', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Anton', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Animações de Entrada */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Header Sensacionalista */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle, #1a1a1a 0%, #000000 100%);
+            padding: 20px;
+            position: relative;
+        }
+
+        .alert-banner {
+            background: red;
+            color: white;
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+            position: absolute;
+            top: 0;
+            z-index: 100;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { background: #8b0000; }
+            50% { background: #ff0000; }
+            100% { background: #8b0000; }
+        }
+
+        h1 {
+            font-size: 4rem;
+            color: var(--gold);
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .sub-headline {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin-bottom: 40px;
+            color: #cccccc;
+        }
+
+        .cta-btn {
+            background: var(--gold);
+            color: var(--dark);
+            padding: 20px 50px;
+            font-size: 1.5rem;
+            font-weight: 900;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.8);
+        }
+
+        /* Seção A Lenda */
+        .bio-section {
+            padding: 80px 20px;
+            background: var(--gray);
+            border-top: 5px solid var(--gold);
+        }
+
+        .bio-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .bio-text p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .highlight {
+            color: var(--gold);
+            font-weight: bold;
+            border-bottom: 2px solid var(--gold);
+        }
+
+        /* Seção Mandaçaia */
+        .honey-section {
+            padding: 100px 20px;
+            text-align: center;
+            background: url('https://www.sedest.pr.gov.br/sites/default/arquivos_restritos/files/imagem/2022-03/mandacaia_0.jpg') no-repeat center center/cover;
+            position: relative;
+        }
+
+        .honey-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+        }
+
+        .honey-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Timeline Cards */
+        .timeline {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 50px;
+            padding: 20px;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--gold);
+            padding: 30px;
+            width: 300px;
+            text-align: left;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            background: rgba(255,215,0,0.1);
+        }
+
+        .card h3 {
+            color: var(--gold);
+            margin-bottom: 10px;
+            font-size: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            background: black;
+            padding: 50px 20px;
+            text-align: center;
+            border-top: 1px solid #333;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .bio-grid { grid-template-columns: 1fr; }
+            .sub-headline { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="alert-banner">
+        ⚠ ESTOQUE LIMITADO: A COLHEITA DE SÃO ROQUE ESTÁ QUASE NO FIM!
+    </div>
+
+    <header>
+        <script
+  src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.11/dist/dotlottie-wc.js"
+  type="module"
+></script>
+
+<dotlottie-wc
+  src="https://lottie.host/e3fe7f05-45f2-4aeb-b953-666b13d54c31/qUwE2SmGDs.lottie"
+  style="width: 300px;height: 300px"
+  autoplay
+  loop
+></dotlottie-wc>
+        
+        <h1 class="reveal">ELES DISSERAM QUE ERA APENAS MEL.<br>ELES ESTAVAM ERRADOS.</h1>
+        <p class="sub-headline reveal">
+            Esqueça tudo o que você sabe sobre doçura. Diretamente dos segredos de São Roque, a revolução da Mandaçaia chegou.
+        </p>
+        <a href="#historia" class="cta-btn reveal">DESCUBRA O SEGREDO DE ZEZA</a>
+    </header>
+
+    <section id="historia" class="bio-section">
+        <div class="bio-grid">
+            <div class="bio-text reveal">
+                <h2>DE OSASCO PARA O MUNDO: A ORIGEM DO MITO</h2>
+                <br>
+                <p>Nascido em setembro de 1962, sob o céu cinzento de Osasco, filho de <strong>Francisco e Dona Marinha Senhorinha</strong>, um homem estava destinado a algo maior.</p>
+                
+                <p>Ele caminhou entre os gigantes. Estudou na lendária <strong>Fundação Bradesco</strong>. Dominou as estruturas do <strong>Banco Itaú</strong>, <strong>Latino America</strong> e <strong>IV Transportes</strong>. Ele viu como o sistema funcionava por dentro.</p>
+                
+                <p>Mas Edison, o visionário, sabia que o verdadeiro ouro não estava nos cofres dos bancos.</p>
+                
+                <p>Após dominar o mercado imobiliário como corretor de elite, ele sentiu o chamado da natureza. Ele se aposentou do mundo dos homens para reinar no mundo das abelhas.</p>
+            </div>
+            <div style="text-align: center;" class="reveal">
+                 <script
+  src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.11/dist/dotlottie-wc.js"
+  type="module"
+></script>
+
+<dotlottie-wc
+  src="https://lottie.host/ad969103-b33d-4358-a4b5-ec602e37319b/qHTHLkNIvG.lottie"
+  style="width: 300px;height: 300px"
+  autoplay
+  loop
+></dotlottie-wc>
+                <p style="color: var(--gold); margin-top: 10px; font-style: italic;">"Do concreto ao favo: A evolução de um líder."</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="honey-section">
+        <div class="honey-overlay"></div>
+        <div class="honey-content reveal">
+            <h2 style="font-size: 3rem; color: white;">O SANTUÁRIO DE SÃO ROQUE</h2>
+            <p style="font-size: 1.5rem; color: #ddd; max-width: 700px; margin: 20px auto;">
+                É lá, oculto nas colinas, onde a mágica acontece. Onde <strong>Edison e sua esposa Edna</strong> — a guardiã das colmeias — cultivam o impossível.
+            </p>
+
+            <div class="timeline">
+                <div class="card">
+                    <h3>1962</h3>
+                    <p>O nascimento da lenda em Osasco. O início de uma era.</p>
+                </div>
+                <div class="card">
+                    <h3>O CORRETOR</h3>
+                    <p>Ele vendeu sonhos em forma de imóveis. Agora, ele entrega saúde em forma de ouro líquido.</p>
+                </div>
+                <div class="card">
+                    <h3>HOJE</h3>
+                    <p>O Guardião das Mandaçaias. Um melário exclusivo, cultivado com precisão cirúrgica.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="padding: 80px 20px; background: white; color: black; text-align: center;">
+        <h2 style="color: black; font-size: 3rem; margin-bottom: 30px;">POR QUE AS ABELHAS MANDAÇAIA?</h2>
+        <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 40px;">
+            <div style="max-width: 400px; text-align: left;">
+                <p style="font-size: 1.3rem; font-weight: bold;">
+                    <span style="color: red;">❌ MEL COMUM:</span> Industrializado, sem alma, apenas açúcar.
+                </p>
+                <br>
+                <p style="font-size: 1.3rem; font-weight: bold;">
+                    <span style="color: green;">✅ ZEZA DO MEL:</span> Produzido por abelhas nativas sem ferrão. Raro. Medicinal. Exclusivo. Cultivado pelas mãos de quem conhece o valor do trabalho duro.
+                </p>
+            </div>
+            <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_mK7qUz.json" background="transparent" speed="1" style="width: 250px;" loop autoplay></lottie-player>
+        </div>
+        
+        <br><br>
+        <a href="#" class="cta-btn" style="background: black; color: white;">QUERO RESERVAR MEU POTE</a>
+    </section>
+
+    <footer>
+        <h3 style="color: var(--gold);">ZEZA DO MEL</h3>
+        <p>São Roque - SP</p>
+        <p style="font-size: 0.8rem; color: #555; margin-top: 20px;">
+            © 2024 Zeza do Mel. Todos os direitos reservados. O mel é real, a lenda é eterna.
+        </p>
+    </footer>
+
+    <script>
+        // Script simples para animação de scroll (Scroll Reveal)
+        window.addEventListener('scroll', reveal);
+
+        function reveal() {
+            var reveals = document.querySelectorAll('.reveal');
+
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+        // Ativar na carga inicial
+        reveal();
+    </script>
+</body>
+</html>
