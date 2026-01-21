@@ -3,324 +3,255 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zeza do Mel | Ouro da Mata Atlântica</title>
-    <meta name="description" content="Mel de Mandaçaia legítimo de São Roque. Uma experiência de sabor, saúde e preservação da natureza.">
+    
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <title>Zeza Do Mel | Mandaçaia Reserve</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;900&display=swap" rel="stylesheet">
     
-    <script src="https://unpkg.com/phosphor-icons"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
-        /* --- DESIGN SYSTEM (Emoção & Modernidade) --- */
         :root {
-            --color-gold: #D9A528;
-            --color-gold-light: #F4Ebd0;
-            --color-dark: #121212;
-            --color-dark-glass: rgba(18, 18, 18, 0.85);
-            --color-text: #E0E0E0;
-            --color-text-muted: #A0A0A0;
-            --font-display: 'Cormorant Garamond', serif; /* Fonte de Luxo/Emoção */
-            --font-body: 'Manrope', sans-serif; /* Fonte Limpa/Tech */
-            --padding-container: 24px;
+            --bg: #000000;
+            --glass: rgba(255, 255, 255, 0.08);
+            --border: rgba(255, 255, 255, 0.1);
+            --gold: #FFD700;
+            --accent: #FFB800;
+            --text: #FFFFFF;
+            --text-gray: #888888;
         }
 
-        /* --- RESET --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        
+
         body {
-            background-color: var(--color-dark);
-            color: var(--color-text);
-            font-family: var(--font-body);
-            line-height: 1.6;
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             overflow-x: hidden;
         }
 
-        /* --- TIPOGRAFIA EMOCIONAL --- */
-        h1, h2, h3 { font-family: var(--font-display); font-weight: 600; line-height: 1.1; }
-        h1 { font-size: 3.5rem; letter-spacing: -0.02em; }
-        h2 { font-size: 2.8rem; color: var(--color-gold); margin-bottom: 20px; }
-        p { font-size: 1.1rem; color: var(--color-text-muted); max-width: 600px; }
+        /* --- TELA DE CARREGAMENTO (PRELOADER) --- */
+        #loader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #000; z-index: 9999;
+            display: flex; justify-content: center; align-items: center;
+            transition: opacity 0.5s;
+        }
+        .loader-logo { width: 80px; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0% { opacity: 0.5; transform: scale(1); } 50% { opacity: 1; transform: scale(1.1); } 100% { opacity: 0.5; transform: scale(1); } }
 
-        .highlight { color: var(--color-gold); font-style: italic; }
-
-        /* --- HEADER FLUTUANTE --- */
-        header {
-            position: fixed; top: 0; left: 0; width: 100%;
-            padding: 20px var(--padding-container);
+        /* --- HEADER --- */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 100;
+            padding: 20px 40px;
             display: flex; justify-content: space-between; align-items: center;
-            background: rgba(0,0,0,0.2);
-            backdrop-filter: blur(15px);
-            z-index: 1000;
+            backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
-
-        .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; color: #fff; text-decoration: none; font-size: 1.2rem; }
-        .logo img { height: 40px; }
-
-        .nav-desktop { display: flex; gap: 30px; }
-        .nav-desktop a { color: #fff; text-decoration: none; font-size: 0.9rem; transition: 0.3s; opacity: 0.8; }
-        .nav-desktop a:hover { opacity: 1; color: var(--color-gold); }
         
-        @media(max-width: 768px) { .nav-desktop { display: none; } }
+        .logo { display: flex; align-items: center; gap: 15px; font-weight: 900; letter-spacing: -1px; font-size: 1.2rem; }
+        .logo img { height: 45px; }
 
-        /* --- HERO: O IMPACTO VISUAL --- */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: var(--padding-container);
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Fundo com Imagem Real de Mel */
-        .hero-bg {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(18,18,18,1)), 
-                        url('https://images.unsplash.com/photo-1558583055-d7ac00b1adca?q=80&w=2574&auto=format&fit=crop') center/cover no-repeat;
-            z-index: -1;
-            animation: zoomSlow 20s infinite alternate;
-        }
-        @keyframes zoomSlow { from { transform: scale(1); } to { transform: scale(1.1); } }
-
-        .hero h1 span { display: block; font-size: 1.5rem; font-family: var(--font-body); text-transform: uppercase; letter-spacing: 4px; margin-bottom: 10px; color: var(--color-gold); opacity: 0.9; }
-
-        .btn-cta {
-            margin-top: 40px;
-            background: var(--color-gold);
-            color: #000;
-            padding: 16px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            transition: transform 0.3s, box-shadow 0.3s;
-            display: inline-flex; align-items: center; gap: 10px;
-        }
-        .btn-cta:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(217, 165, 40, 0.4); }
-
-        /* --- SECTION: A HISTÓRIA (EMOÇÃO) --- */
-        .section { padding: 100px var(--padding-container); }
-        .grid-story {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
-            max-width: 1200px; margin: 0 auto;
-        }
-
-        .story-img-wrapper {
-            position: relative;
-        }
-        
-        .story-img {
-            width: 100%; border-radius: 8px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-            /* Foto Real de Abelha/Flor */
-            content: url('https://images.unsplash.com/photo-1473973266408-ed4e27abdd47?q=80&w=1000&auto=format&fit=crop'); 
-            filter: sepia(20%) contrast(1.1);
-        }
-
-        .story-content h3 { font-size: 1.5rem; color: var(--color-gold); margin-bottom: 10px; font-family: var(--font-body); text-transform: uppercase; letter-spacing: 2px;}
-        .story-content p { margin-bottom: 20px; font-size: 1.15rem; line-height: 1.8; }
-
-        /* --- GALERIA IMERSIVA --- */
-        .gallery-strip {
-            display: flex; gap: 10px; overflow: hidden; padding: 40px 0;
-            background: #0a0a0a;
-        }
-        .gallery-item {
-            flex: 0 0 300px; height: 400px;
-            border-radius: 4px; overflow: hidden; position: relative;
-        }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; opacity: 0.8; }
-        .gallery-item:hover img { transform: scale(1.1); opacity: 1; }
-        .gallery-caption {
-            position: absolute; bottom: 20px; left: 20px; color: #fff;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.8); font-weight: 600;
-        }
-
-        /* --- PRODUTOS (CARDÁPIO) --- */
-        .products-section { background: #181818; }
-        .products-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px; max-width: 1200px; margin: 50px auto 0;
-        }
-
-        .product-card {
-            background: #222; border: 1px solid #333;
-            border-radius: 12px; overflow: hidden;
+        .btn-nav {
+            padding: 10px 24px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 100px;
+            color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 600;
             transition: 0.3s;
         }
-        .product-card:hover { transform: translateY(-10px); border-color: var(--color-gold); }
+        .btn-nav:hover { background: #fff; color: #000; }
 
-        .product-img {
-            height: 250px; width: 100%; object-fit: cover;
-            /* Foto de Pote de Mel */
+        /* --- HERO GIGANTE --- */
+        .hero {
+            height: 100vh;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(255, 184, 0, 0.15) 0%, rgba(0,0,0,0) 60%);
+            position: relative;
+        }
+        
+        /* Título Gigante Estilo Capa de Revista */
+        h1 {
+            font-size: clamp(3rem, 10vw, 8rem);
+            line-height: 0.9;
+            font-weight: 900;
+            letter-spacing: -0.05em;
+            background: linear-gradient(to bottom, #fff, #666);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
         }
 
-        .card-body { padding: 25px; }
-        .card-price { display: block; font-size: 1.8rem; color: #fff; font-weight: 700; margin: 15px 0; font-family: var(--font-display); }
-        .btn-buy {
-            width: 100%; padding: 12px; border: 1px solid var(--color-gold); color: var(--color-gold);
-            background: transparent; border-radius: 4px; cursor: pointer;
-            font-weight: 600; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px;
+        .subtitle {
+            font-size: 1.2rem; color: var(--accent); text-transform: uppercase; letter-spacing: 4px;
+            margin-bottom: 10px;
         }
-        .btn-buy:hover { background: var(--color-gold); color: #000; }
+
+        .hero p { color: var(--text-gray); max-width: 500px; font-size: 1.1rem; line-height: 1.6; margin-bottom: 40px; }
+
+        /* --- IMAGEM HERO FLUTUANTE --- */
+        .hero-img-container {
+            width: 100%; max-width: 1000px; height: 50vh;
+            position: absolute; bottom: 0; z-index: -1;
+            mask-image: linear-gradient(to top, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 100%);
+            -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 100%);
+        }
+        .hero-img-container img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; }
+
+        /* --- CARDS 3D --- */
+        .grid-section { padding: 100px 20px; max-width: 1200px; margin: 0 auto; }
+        .grid-title { font-size: 3rem; font-weight: 900; margin-bottom: 60px; text-align: center; }
+
+        .cards-wrapper {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;
+        }
+
+        .glass-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 40px;
+            border-radius: 30px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(255, 184, 0, 0.15);
+            border-color: rgba(255, 184, 0, 0.3);
+        }
+
+        .card-img {
+            width: 100%; height: 250px; object-fit: cover; border-radius: 20px; margin-bottom: 25px;
+            filter: grayscale(0.2) contrast(1.1);
+        }
+
+        .glass-card h3 { font-size: 1.8rem; margin-bottom: 10px; font-weight: 700; }
+        .glass-card p { color: var(--text-gray); font-size: 0.95rem; margin-bottom: 20px; }
+        
+        .price-badge {
+            display: inline-block; background: #fff; color: #000; font-weight: 800;
+            padding: 8px 16px; border-radius: 50px; font-size: 1.1rem;
+        }
+
+        .buy-link {
+            display: block; margin-top: 25px; color: var(--accent); font-weight: 700; text-decoration: none;
+            display: flex; align-items: center; gap: 10px;
+        }
 
         /* --- FOOTER --- */
         footer {
-            padding: 60px 24px; text-align: center; border-top: 1px solid #333;
-            background: #050505; color: #777;
+            border-top: 1px solid var(--border);
+            padding: 60px 20px; text-align: center;
+            background: #050505;
         }
+        
+        /* Whatsapp Button Pulse */
+        .wa-float {
+            position: fixed; bottom: 30px; right: 30px;
+            width: 70px; height: 70px; border-radius: 50%;
+            background: #25D366; color: #fff;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 32px; z-index: 1000;
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.4);
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
-        /* --- RESPONSIVIDADE --- */
-        @media(max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            .grid-story { grid-template-columns: 1fr; }
-            .hero-bg { background-position: center; }
-            .gallery-item { flex: 0 0 200px; height: 300px; }
+        @media (max-width: 768px) {
+            h1 { font-size: 3.5rem; }
+            .logo span { display: none; } /* Só mostra logo no mobile */
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <a href="#" class="logo">
-            <img src="https://zezadomel.pages.dev/zezadomel.png" alt="Logo Zezé">
-            ZEZÉ DO MEL
-        </a>
-        <nav class="nav-desktop">
-            <a href="#historia">A História</a>
-            <a href="#colheita">Nossa Colheita</a>
-            <a href="#produtos">Loja</a>
-        </nav>
-        <a href="https://wa.me/5511999999999" style="color:var(--color-gold); font-weight:700; text-decoration:none;">Fale Conosco</a>
-    </header>
+    <div id="loader">
+        <img src="https://zezadomel.pages.dev/zezadomel.png" alt="Carregando..." class="loader-logo">
+    </div>
+
+    <nav>
+        <div class="logo">
+            <img src="https://zezadomel.pages.dev/zezadomel.png" alt="Logo Zeza Do Mel">
+            <span>ZEZA DO MEL</span>
+        </div>
+        <a href="#produtos" class="btn-nav">Loja Oficial</a>
+    </nav>
 
     <section class="hero">
-        <div class="hero-bg"></div>
-        <h1>
-            <span>São Roque • SP</span>
-            A Alma da <br><em class="highlight">Mandaçaia</em>
-        </h1>
-        <p style="margin-top: 20px; color: #fff; opacity: 0.9;">
-            Não vendemos apenas mel. Entregamos gotas de biodiversidade, 
-            cuidado artesanal e a pureza da Mata Atlântica preservada.
-        </p>
-        <a href="#produtos" class="btn-cta">
-            Experimentar o Ouro Líquido
-        </a>
-    </section>
-
-    <section id="historia" class="section">
-        <div class="grid-story">
-            <div class="story-img-wrapper">
-                <img class="story-img" src="https://images.unsplash.com/photo-1596451190630-186aff535bf2?q=80&w=1000&auto=format&fit=crop" alt="Cuidado com abelhas">
-            </div>
-            <div class="story-content">
-                <h3>O Guardião das Abelhas</h3>
-                <h2>Muito mais que um produtor. <br>Um preservador.</h2>
-                <p>
-                    Em meio ao verde exuberante de São Roque, o meliponário do Zezé é um santuário. 
-                    Aqui, respeitamos o tempo da natureza.
-                </p>
-                <p>
-                    O mel de <strong>Mandaçaia</strong> é colhido manualmente, sem pressa. 
-                    Cada pote carrega o aroma das flores nativas da nossa região e a dedicação 
-                    de quem entende que abelha não é fábrica, é vida.
-                </p>
-                <p style="color: var(--color-gold);">
-                    "O sabor é complexo: menos doce, levemente cítrico, inesquecível."
-                </p>
-            </div>
+        <span class="subtitle">São Roque • Brasil</span>
+        <h1>MANDAÇAIA<br>RESERVE</h1>
+        <p>A pureza da engenharia natural. Mel nativo, sofisticado e raro. Produzido pelo Sr. Edison.</p>
+        
+        <div class="hero-img-container">
+            <img src="https://images.unsplash.com/photo-1587049352846-4a222e784d38?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80" alt="Mel Textura">
         </div>
     </section>
 
-    <section id="colheita" style="padding: 0 0 50px 0; background: #0a0a0a;">
-        <div style="text-align: center; padding: 50px 24px;">
-            <h2>Retratos do Meliponário</h2>
-            <p style="margin: 0 auto;">Transparência total. Da caixa racional para a sua mesa.</p>
-        </div>
+    <section id="produtos" class="grid-section">
+        <h2 class="grid-title">Coleção 2026</h2>
 
-        <div class="gallery-strip">
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1587049352846-4a222e784d38?q=80&w=1000&auto=format&fit=crop" alt="Pote de Mel">
-                <div class="gallery-caption">Ouro Puro</div>
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1617870952348-7524edfb63b4?q=80&w=1000&auto=format&fit=crop" alt="Favos de Mandaçaia">
-                <div class="gallery-caption">Potes Naturais</div>
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1000&auto=format&fit=crop" alt="Mata Atlântica São Roque">
-                <div class="gallery-caption">Terroir São Roque</div>
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1620384583142-0b9067541788?q=80&w=1000&auto=format&fit=crop" alt="Caixas Racionais">
-                <div class="gallery-caption">Produção Racional</div>
-            </div>
-        </div>
-    </section>
-
-    <section id="produtos" class="section products-section">
-        <div style="text-align: center;">
-            <h3 style="color:var(--color-gold); letter-spacing: 2px; text-transform:uppercase;">Disponibilidade Limitada</h3>
-            <h2>Escolha a sua Experiência</h2>
-        </div>
-
-        <div class="products-grid">
+        <div class="cards-wrapper">
             
-            <article class="product-card">
-                <img src="https://images.unsplash.com/photo-1587049352851-8d4e89133924?q=80&w=1000&auto=format&fit=crop" class="product-img" alt="Mel Mandaçaia">
-                <div class="card-body">
-                    <h3 style="font-size: 1.3rem; margin-bottom: 5px; color: #fff;">Mel Mandaçaia (150ml)</h3>
-                    <p style="font-size: 0.9rem;">Safra atual. Sabor floral com notas cítricas. Não pasteurizado.</p>
-                    <span class="card-price">R$ 65,00</span>
-                    <button class="btn-buy" onclick="comprar('Mel Mandaçaia 150ml')">Encomendar</button>
-                </div>
-            </article>
+            <div class="glass-card">
+                <img src="https://images.unsplash.com/photo-1558583055-d7ac00b1adca?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="card-img" alt="Mel Zeza">
+                <h3>Mel Puro (150ml)</h3>
+                <p>Notas cítricas e florais. Safra colhida na Mata Atlântica.</p>
+                <div class="price-badge">R$ 65,00</div>
+                <a href="#" onclick="zap('Quero o Mel 150ml')" class="buy-link">ENCOMENDAR <i data-lucide="arrow-right"></i></a>
+            </div>
 
-            <article class="product-card">
-                <img src="https://images.unsplash.com/photo-1615486511484-92e172cc416d?q=80&w=1000&auto=format&fit=crop" class="product-img" alt="Própolis">
-                <div class="card-body">
-                    <h3 style="font-size: 1.3rem; margin-bottom: 5px; color: #fff;">Própolis Nativo</h3>
-                    <p style="font-size: 0.9rem;">Extração pura. Poderoso antibiótico natural para imunidade.</p>
-                    <span class="card-price">R$ 40,00</span>
-                    <button class="btn-buy" onclick="comprar('Própolis Nativo')">Encomendar</button>
-                </div>
-            </article>
+            <div class="glass-card">
+                <img src="https://images.unsplash.com/photo-1471193945509-9adadd0974ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="card-img" alt="Própolis">
+                <h3>Própolis Nativo</h3>
+                <p>O antibiótico da natureza. Extração artesanal concentrada.</p>
+                <div class="price-badge">R$ 40,00</div>
+                <a href="#" onclick="zap('Quero o Própolis')" class="buy-link">ENCOMENDAR <i data-lucide="arrow-right"></i></a>
+            </div>
 
-            <article class="product-card">
-                <img src="https://images.unsplash.com/photo-1596451190630-186aff535bf2?q=80&w=1000&auto=format&fit=crop" class="product-img" alt="Caixa Abelha">
-                <div class="card-body">
-                    <h3 style="font-size: 1.3rem; margin-bottom: 5px; color: #fff;">Enxame + Caixa INPA</h3>
-                    <p style="font-size: 0.9rem;">Comece sua criação. Genética saudável e adaptada.</p>
-                    <span class="card-price">Sob Consulta</span>
-                    <button class="btn-buy" onclick="comprar('Enxame e Caixa')">Falar com Zezé</button>
-                </div>
-            </article>
+            <div class="glass-card">
+                <img src="https://images.unsplash.com/photo-1596451190630-186aff535bf2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="card-img" alt="Caixa Racional">
+                <h3>Enxame + Caixa</h3>
+                <p>Inicie seu meliponário com genética selecionada por Edison.</p>
+                <div class="price-badge" style="background:#333; color:#fff;">Sob Consulta</div>
+                <a href="#" onclick="zap('Tenho interesse em enxames')" class="buy-link">FALAR COM EDISON <i data-lucide="arrow-right"></i></a>
+            </div>
 
         </div>
     </section>
 
     <footer>
-        <img src="https://zezadomel.pages.dev/zezadomel.png" alt="Zezé Logo" style="height: 50px; opacity: 0.5; margin-bottom: 20px;">
-        <p>© 2026 Meliponário Zezé do Mel.</p>
-        <p>São Roque, São Paulo - Brasil.</p>
-        <br>
-        <a href="https://wa.me/5511999999999" style="color: var(--color-gold); text-decoration: none;">Desenvolvido para o futuro.</a>
+        <img src="https://zezadomel.pages.dev/zezadomel.png" alt="Zeza Logo" style="height: 60px; opacity: 0.5; margin-bottom: 20px;">
+        <p style="color: #444; font-size: 0.8rem;">ZEZA DO MEL • SÃO ROQUE, SP</p>
+        <p style="color: #444; font-size: 0.8rem; margin-top: 5px;">© 2026 Todos os direitos reservados.</p>
     </footer>
 
+    <a href="https://wa.me/5511999999999" class="wa-float">
+        <i data-lucide="message-circle"></i>
+    </a>
+
     <script>
-        function comprar(produto) {
-            const numero = "5511999999999"; // COLOQUE O NÚMERO AQUI
-            const mensagem = `Olá Zezé! Estive no seu site e me apaixonei. Gostaria de encomendar: ${produto}`;
-            const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
-            window.open(url, '_blank');
+        lucide.createIcons();
+
+        // Loader sumir quando carregar
+        window.addEventListener('load', () => {
+            document.getElementById('loader').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('loader').style.display = 'none';
+            }, 500);
+        });
+
+        // Função Zap
+        function zap(msg) {
+            let num = "5511999999999"; // <--- SEU NÚMERO AQUI
+            window.open(`https://wa.me/${num}?text=${encodeURIComponent(msg)}`, '_blank');
         }
     </script>
-
 </body>
 </html>
