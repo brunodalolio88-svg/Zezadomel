@@ -3,299 +3,406 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mel do Edison | Mandaçaia - São Roque</title>
-    <meta name="description" content="Mel puro de abelha Mandaçaia. Produção artesanal de Edison dos Santos em São Roque, SP.">
+    <title>Zezé do Mel | Mandaçaia - São Roque</title>
+    <meta name="description" content="Mel puro e nobre de abelha Mandaçaia. Produção artesanal em São Roque. Conheça nosso meliponário.">
     
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
     
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐝</text></svg>">
 
     <style>
         /* --- VARIÁVEIS DE CORES E ESTILO --- */
         :root {
-            --primary: #F59E0B; /* Dourado Mel */
-            --primary-dark: #D97706;
-            --text-dark: #372808; /* Marrom Café */
-            --text-light: #584928;
-            --bg-light: #FFFBEB; /* Creme suave */
+            /* Cores mais ricas e profundas para dar tom premium */
+            --primary: #F59E0B; /* Dourado Mel Vibrante */
+            --primary-dark: #B45309; /* Âmbar profundo */
+            --secondary: #395144; /* Verde Floresta Elegante */
+            --text-dark: #2A221B; /* Marrom Café */
+            --text-light: #6B5D4D;
+            --bg-cream: #FFFBEB; /* Creme suave */
             --white: #ffffff;
-            --green: #2F855A; /* Verde Natureza */
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --radius: 12px;
+            --radius: 16px;
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
 
-        /* --- RESET BÁSICO --- */
+        /* --- RESET & BASE --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+        html { scroll-behavior: smooth; }
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-light);
+            background-color: var(--bg-cream);
             color: var(--text-dark);
-            line-height: 1.6;
+            line-height: 1.7;
             overflow-x: hidden;
+            position: relative;
         }
 
-        h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--text-dark); }
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
-        ul { list-style: none; }
+        /* Animação de Fundo (Abelhas Sutis) */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.05;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 24 24'%3E%3Cpath fill='%232A221B' d='M19.05 4.91C17.18 3.03 14.69 2 12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91M14.66 14.5L13.24 13.08C13.5 12.25 13.26 11.33 12.6 10.67C11.94 10 11 9.77 10.19 10L8.77 8.61C10 7.33 12 7.29 13.31 8.6C14.6 9.89 14.56 11.88 13.29 13.11L14.66 14.5Z'/%3E%3C/svg%3E");
+            animation: movement 60s linear infinite;
+        }
+        @keyframes movement { from { background-position: 0 0; } to { background-position: 100% 100%; } }
+
+
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--text-dark); }
+        h1 { font-weight: 800; letter-spacing: -1px; }
+        h2 { font-weight: 700; }
+        a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
         img { max-width: 100%; display: block; border-radius: var(--radius); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .section-padding { padding: 80px 0; }
 
-        /* --- CONTAINER GERAL --- */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* --- HEADER --- */
+        /* --- HEADER MODERNO (Glassmorphism) --- */
         header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 251, 235, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
         }
 
         .nav-wrapper {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 70px;
+            height: 80px;
         }
 
-        .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary-dark); }
-        .logo span { color: var(--text-dark); }
+        .logo-img { height: 55px; width: auto; /* Ajuste a altura conforme necessário */ }
 
-        .nav-links { display: flex; gap: 20px; }
-        .nav-links a:hover { color: var(--primary); }
+        .nav-links { display: flex; gap: 25px; font-weight: 500; }
+        .nav-links a { position: relative; }
+        .nav-links a::after {
+            content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0;
+            background-color: var(--primary); transition: width 0.3s;
+        }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-links a:hover { color: var(--primary-dark); }
 
         .cta-header {
-            background-color: var(--green);
+            background: linear-gradient(135deg, var(--secondary), #276749);
             color: white;
-            padding: 8px 16px;
+            padding: 10px 24px;
             border-radius: 50px;
-            font-size: 0.9rem;
             font-weight: 600;
+            box-shadow: var(--shadow-sm);
         }
-        .cta-header:hover { background-color: #276749; }
+        .cta-header:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
 
-        /* --- HERO SECTION (CAPA) --- */
+        /* --- HERO SECTION (Mais impactante) --- */
         .hero {
-            padding-top: 120px;
-            padding-bottom: 60px;
+            padding-top: 160px;
+            padding-bottom: 100px;
             text-align: center;
-            background: linear-gradient(rgba(255,251,235,0.8), rgba(255,251,235,1)), 
-                        url('https://images.unsplash.com/photo-1587049352846-4a222e784d38?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') center/cover;
+            /* Fundo com sobreposição para garantir leitura */
+            background: linear-gradient(rgba(255,251,235,0.85), rgba(255,251,235,0.95)), 
+                        url('https://images.unsplash.com/photo-1473973266408-ed4e27abdd47?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat fixed;
+            overflow: hidden;
         }
 
-        .hero h1 { font-size: 3rem; margin-bottom: 15px; line-height: 1.1; }
-        .hero p { font-size: 1.2rem; color: var(--text-light); margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 20px; line-height: 1.1; }
+        /* Destaque em gradiente no texto */
+        .highlight-text {
+            background: linear-gradient(to right, var(--primary-dark), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero p { font-size: 1.25rem; color: var(--text-light); margin-bottom: 35px; max-width: 650px; margin-left: auto; margin-right: auto; }
 
-        .btn {
+        .btn-main {
             display: inline-block;
-            background-color: var(--primary);
+            background: linear-gradient(45deg, var(--primary), var(--primary-dark));
             color: white;
-            padding: 12px 30px;
+            padding: 14px 36px;
             border-radius: 50px;
-            font-weight: 600;
-            box-shadow: var(--shadow);
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: var(--shadow-sm);
+            border: none;
+            cursor: pointer;
         }
-        .btn:hover { background-color: var(--primary-dark); transform: translateY(-2px); }
+        .btn-main:hover { transform: translateY(-3px); box-shadow: 0 10px 20px -10px rgba(245, 158, 11, 0.5); }
 
-        /* --- SOBRE (GRID) --- */
-        .section-title { text-align: center; margin-bottom: 40px; font-size: 2rem; }
-        .section-padding { padding: 60px 0; }
-
+        /* --- SOBRE COM VÍDEO --- */
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 40px;
+            gap: 50px;
             align-items: center;
         }
 
-        .about-text h3 { margin-bottom: 15px; color: var(--primary-dark); }
-
-        /* --- CARDS (DESTAQUE DA TECNOLOGIA) --- */
-        .cards-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+        .video-container {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            aspect-ratio: 16/9;
+            background: #000;
         }
+        
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .section-subtitle { color: var(--primary-dark); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; font-size: 0.9rem; display: block; margin-bottom: 10px;}
+        .section-title { font-size: 2.5rem; margin-bottom: 40px; text-align: center;}
+
+        /* --- NOVA SEÇÃO: GALERIA MOBILE (SWIPE) --- */
+        .gallery-scroller {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding: 20px 5px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch; /* Smooth scroll no iOS */
+        }
+        .gallery-scroller::-webkit-scrollbar { display: none; } /* Esconde barra de rolagem */
+        
+        .gallery-item {
+            flex: 0 0 80%; /* No celular, ocupa 80% da tela */
+            scroll-snap-align: center;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s;
+            position: relative;
+        }
+        .gallery-item:hover { transform: scale(1.02); }
+        .gallery-item img { width: 100%; height: 300px; object-fit: cover; }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            color: white;
+            font-weight: 500;
+        }
+
+        /* --- CARDS PRODUTOS (Visual Atualizado) --- */
+        .cards-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
 
         .card {
             background: var(--white);
-            border-radius: var(--radius);
-            padding: 25px;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 20px; /* Bordas mais arredondadas */
+            padding: 30px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.5);
             position: relative;
+            z-index: 1;
             overflow: hidden;
-            border: 1px solid rgba(0,0,0,0.03);
         }
 
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 20px rgba(245, 158, 11, 0.2);
+        /* Efeito de brilho no hover */
+        .card::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.5s; z-index: -1;
+        }
+        .card:hover::before { left: 100%; }
+
+        .card:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); border-color: var(--primary); }
+
+        .card-icon-wrapper {
+            width: 70px; height: 70px;
+            background: #FFF4DA;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2.5rem; margin-bottom: 20px;
+            color: var(--primary-dark);
         }
 
-        .card-icon { font-size: 2.5rem; margin-bottom: 15px; }
-        .card h3 { margin-bottom: 10px; font-size: 1.3rem; }
-        .card p { color: var(--text-light); font-size: 0.95rem; margin-bottom: 20px; }
-        
-        /* Tag para produto */
-        .price-tag {
-            display: inline-block;
-            background: #FEF3C7;
-            color: #92400E;
-            padding: 5px 12px;
-            border-radius: 8px;
-            font-weight: 700;
-            margin-top: 10px;
-        }
-
-        /* --- FAIXA LOCALIZAÇÃO --- */
-        .location-banner {
-            background-color: var(--text-dark);
-            color: var(--bg-light);
-            text-align: center;
-            padding: 40px 20px;
-            border-radius: var(--radius);
-            margin: 40px 0;
-        }
-        .location-banner h2, .location-banner h3 { color: var(--primary); }
+        .card h3 { margin-bottom: 10px; font-size: 1.4rem; }
+        .price-tag { background: var(--secondary); color: #fff; padding: 6px 14px; border-radius: 30px; font-weight: 700; font-size: 1.1rem; display: inline-block; margin-top: 15px;}
 
         /* --- RODAPÉ --- */
-        footer {
-            background-color: #27272a;
-            color: #a1a1aa;
-            padding: 40px 0;
-            text-align: center;
-            margin-top: 60px;
-        }
-        footer p { font-size: 0.9rem; }
+        footer { background-color: #1c1917; color: #a8a29e; padding: 60px 0 30px; text-align: center; }
+        footer .logo-img { filter: grayscale(1) brightness(10); opacity: 0.7; margin: 0 auto 20px; } /* Logo branco no footer */
 
-        /* --- BOTÃO FLUTUANTE WHATSAPP --- */
+        /* --- WHATSAPP FIXO --- */
         .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background-color: #25D366;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            z-index: 2000;
-            transition: all 0.3s;
+            position: fixed; bottom: 30px; right: 30px;
+            background: linear-gradient(45deg, #25D366, #128C7E);
+            color: white; width: 65px; height: 65px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 10px 20px -5px rgba(37, 211, 102, 0.5);
+            z-index: 2000; transition: all 0.3s;
         }
-        .whatsapp-float:hover { transform: scale(1.1); background-color: #1ebc57; }
+        .whatsapp-float:hover { transform: scale(1.1) rotate(10deg); }
 
         /* --- RESPONSIVIDADE --- */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
-            .about-grid { grid-template-columns: 1fr; }
-            .nav-links { display: none; } /* Simplificado para exemplo */
+            .hero h1 { font-size: 2.5rem; }
+            .about-grid { grid-template-columns: 1fr; gap: 30px; }
+            .video-container { order: -1; /* Vídeo acima do texto no celular */ }
+            .nav-links { display: none; } /* Menu simplificado */
+            .gallery-item { flex: 0 0 85%; }
+        }
+        @media (min-width: 769px) {
+            .gallery-item { flex: 0 0 40%; } /* No PC, mostra mais itens */
         }
     </style>
 </head>
 <body>
 
-    <header>
+    <header data-aos="fade-down" data-aos-duration="1000">
         <div class="container nav-wrapper">
-            <div class="logo">Mel do <span>Edison</span></div>
+            <div class="logo-container">
+                <img src="https://zezadomel.pages.dev/zezadomel.png" alt="Zezé do Mel Logo" class="logo-img">
+            </div>
+            
             <nav class="nav-links">
-                <a href="#sobre">Sobre</a>
-                <a href="#produtos">Produtos</a>
-                <a href="#local">Localização</a>
+                <a href="#sobre">O Meliponário</a>
+                <a href="#galeria">Fotos & Vídeos</a>
+                <a href="#produtos">Nossos Méis</a>
             </nav>
-            <a href="https://wa.me/5511999999999" class="cta-header">Comprar Agora</a>
+            <a href="https://wa.me/5511999999999" class="cta-header">Encomendar</a>
         </div>
     </header>
 
     <section class="hero">
-        <div class="container">
-            <h1>O Ouro Líquido de São Roque</h1>
-            <p>Mel puro de Mandaçaia. Produção 100% artesanal, direto do meliponário do Edison dos Santos para a sua mesa.</p>
-            <a href="#produtos" class="btn">Ver Nossos Méis</a>
+        <div class="container" data-aos="zoom-in-up" data-aos-duration="1200">
+            <h1>O Ouro Líquido da <br><span class="highlight-text">Mandaçaia</span></h1>
+            <p>Direto de São Roque. Um mel raro, sofisticado e produzido com respeito à natureza em nosso meliponário artesanal.</p>
+            <button onclick="document.getElementById('produtos').scrollIntoView();" class="btn-main">Ver a Colheita Disponível</button>
         </div>
     </section>
 
     <section id="sobre" class="section-padding container">
         <div class="about-grid">
-            <div class="about-img">
-                
-                <img src="https://images.unsplash.com/photo-1596451190630-186aff535bf2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Edison cuidando das abelhas">
+            
+            <div class="about-text" data-aos="fade-right">
+                <span class="section-subtitle">Nosso Santuário</span>
+                <h2>Guardiões das Abelhas Nativas</h2>
+                <p>Em São Roque, criamos um refúgio para as abelhas sem ferrão. Nossa produção é focada na qualidade, não na quantidade.</p>
+                <br>
+                <p>A <strong>Mandaçaia</strong> (<em>Melipona quadrifasciata</em>) é uma abelha dócil e fascinante. Seu mel é menos doce que o comum, com notas cítricas e florais complexas, sendo considerado um tesouro gastronômico e medicinal.</p>
+                <br>
+                <p style="font-weight: 600; color: var(--secondary);">Assista ao lado como elas trabalham em nossas caixas racionais ▼</p>
             </div>
-            <div class="about-text">
-                <h3>A Arte do Meliponário</h3>
-                <h2>Edison dos Santos & As Mandaçaias</h2>
-                <p>Localizado na bela região de São Roque, nosso meliponário é um santuário para as abelhas nativas sem ferrão.</p>
-                <br>
-                <p>Diferente do mel comum, o mel de <strong>Mandaçaia</strong> (*Melipona quadrifasciata*) é mais fluido, menos doce e possui notas florais complexas. É considerado um alimento funcional rico em propriedades medicinais.</p>
-                <br>
-                <p>Produzimos em pequena escala, respeitando o ciclo da natureza e garantindo um produto cru e sem conservantes.</p>
+
+            <div class="video-container" data-aos="fade-left">
+                <video controls poster="https://images.unsplash.com/photo-1587049352851-8d4e89133924?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" preload="metadata">
+                    <source src="https://assets.mixkit.co/videos/preview/mixkit-bees-flying-around-a-beehive-33001-large.mp4" type="video/mp4">
+                    Seu navegador não suporta a reprodução de vídeos.
+                </video>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="galeria" class="section-padding" style="background: #FFF4DA;">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Vida no Meliponário</h2>
+            <p style="text-align: center; margin-bottom: 30px;" data-aos="fade-up">Deslize para ver nossa produção e as abelhas.</p>
+            
+            <div class="gallery-scroller" data-aos="fade-up" data-aos-delay="200">
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1558583055-d7ac00b1adca?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Mel de mandaçaia no pote" loading="lazy">
+                    <div class="gallery-caption">Nosso Ouro Líquido</div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://i.pinimg.com/originals/e3/30/6c/e3306cc6128360007cb6a881d95b6265.jpg" alt="Abelha Mandaçaia na entrada da colmeia" loading="lazy" style="object-position: center;">
+                    <div class="gallery-caption">Mandaçaia na entrada da colmeia</div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1620384583142-0b9067541788?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Caixas racionais de abelhas" loading="lazy">
+                    <div class="gallery-caption">Meliponário em São Roque</div>
+                </div>
+
+                 <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1617870952348-7524edfb63b4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Potes de mel e pólen dentro da caixa" loading="lazy">
+                    <div class="gallery-caption">Potes de alimento naturais</div>
+                </div>
             </div>
         </div>
     </section>
 
     <section id="produtos" class="section-padding container">
-        <h2 class="section-title">Nossa Colheita</h2>
+        <h2 class="section-title" data-aos="fade-up">Disponível para Encomenda</h2>
         
         <div class="cards-container">
-            <div class="card">
-                <div class="card-icon">🍯</div>
-                <h3>Mel de Mandaçaia (Pote 150ml)</h3>
-                <p>Nossa especialidade. Mel claro, levemente cítrico e com propriedades digestivas. Ideal para gastronomia refinada.</p>
-                <div class="price-tag">R$ 55,00</div>
-                <a href="https://wa.me/5511999999999?text=Olá, gostaria de encomendar o pote de 150ml." style="display:block; margin-top:20px; color:var(--primary-dark); font-weight:600;">Encomendar →</a>
+            <div class="card" data-aos="flip-left" data-aos-delay="100">
+                <div class="card-icon-wrapper">🍯</div>
+                <h3>Mel de Mandaçaia (150ml)</h3>
+                <p>Safra especial. Sabor complexo, levemente ácido e floral. Uma experiência gastronômica única.</p>
+                <div class="price-tag">R$ 65,00</div>
+                <a href="https://wa.me/5511999999999?text=Olá, vim pelo site. Gostaria de encomendar o pote de 150ml de Mandaçaia." style="display:block; margin-top:25px; color:var(--primary-dark); font-weight:700; display:flex; align-items:center; gap:10px;">
+                    Pedir no WhatsApp 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
             </div>
 
-            <div class="card">
-                <div class="card-icon">🪵</div>
-                <h3>Própolis de Mandaçaia</h3>
-                <p>Extrato puro. Excelente antibiótico natural e reforço para a imunidade. Produção limitadíssima.</p>
-                <div class="price-tag">R$ 35,00</div>
-                <a href="https://wa.me/5511999999999?text=Olá, gostaria de saber sobre o própolis." style="display:block; margin-top:20px; color:var(--primary-dark); font-weight:600;">Encomendar →</a>
+            <div class="card" data-aos="flip-left" data-aos-delay="300">
+                <div class="card-icon-wrapper">🪵</div>
+                <h3>Própolis Nobre</h3>
+                <p>Extraído de Mandaçaia. Altíssima pureza e concentração. Potente aliado natural para a imunidade.</p>
+                <div class="price-tag">R$ 40,00</div>
+                <a href="https://wa.me/5511999999999?text=Olá, vim pelo site. Gostaria de saber sobre o própolis." style="display:block; margin-top:25px; color:var(--primary-dark); font-weight:700; display:flex; align-items:center; gap:10px;">
+                    Pedir no WhatsApp
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
             </div>
 
-            <div class="card">
-                <div class="card-icon">🐝</div>
-                <h3>Enxames & Caixas</h3>
-                <p>Quer começar sua criação? Fornecemos enxames saudáveis e caixas racionais padrão INPA para iniciantes.</p>
-                <div class="price-tag">Sob Consulta</div>
-                <a href="https://wa.me/5511999999999?text=Olá Edison, gostaria de saber sobre enxames." style="display:block; margin-top:20px; color:var(--primary-dark); font-weight:600;">Falar com Edison →</a>
+            <div class="card" data-aos="flip-left" data-aos-delay="500">
+                <div class="card-icon-wrapper">📦</div>
+                <h3>Enxames & Consultoria</h3>
+                <p>Deseja iniciar seu meliponário? Converse conosco sobre a disponibilidade de enxames saudáveis.</p>
+                <div class="price-tag" style="background: var(--text-dark);">Sob Consulta</div>
+                <a href="https://wa.me/5511999999999?text=Olá Zezé, vim pelo site e gostaria de saber sobre enxames." style="display:block; margin-top:25px; color:var(--primary-dark); font-weight:700; display:flex; align-items:center; gap:10px;">
+                    Falar com Zezé
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
             </div>
-        </div>
-    </section>
-
-    <section id="local" class="container">
-        <div class="location-banner">
-            <h3>Produção Local</h3>
-            <h2>Direto de São Roque - SP</h2>
-            <p style="color: #ddd; margin-top: 15px;">A altitude e a mata preservada da região conferem um sabor único ao nosso mel.</p>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <div class="logo" style="margin-bottom: 20px;">Mel do <span>Edison</span></div>
-            <p>© 2024 Meliponário Edison dos Santos. Todos os direitos reservados.</p>
-            <p>São Roque, São Paulo.</p>
+            <img src="https://zezadomel.pages.dev/zezadomel.png" alt="Zezé do Mel" class="logo-img">
+            <p>© 2024 Zezé do Mel - Meliponário Artesanal.</p>
+            <p>São Roque, SP. Feito com carinho pelas abelhas.</p>
         </div>
     </footer>
 
-    <a href="https://wa.me/5511999999999" class="whatsapp-float" target="_blank" title="Fale conosco no WhatsApp">
-        <svg style="width:34px;height:34px" viewBox="0 0 24 24">
+    <a href="https://wa.me/5511999999999" class="whatsapp-float" target="_blank" aria-label="Fale conosco no WhatsApp">
+        <svg style="width:36px;height:36px" viewBox="0 0 24 24">
             <path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 15 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67Z" />
         </svg>
     </a>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Inicializa as animações de rolagem
+        AOS.init({
+            duration: 800, // Duração da animação em milissegundos
+            once: true, // A animação só acontece uma vez ao descer
+            offset: 100 // Começa a animar um pouco antes do elemento aparecer
+        });
+    </script>
+
 </body>
 </html>
-
